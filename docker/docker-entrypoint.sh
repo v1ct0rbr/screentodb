@@ -16,11 +16,11 @@
 #
 cd /var/www/html/config
 
-sed -i "s|const DEBUG_MODE    = FALSE;|const DEBUG_MODE    = $DEBUG_MODE;|g" settings.php
+cp db_config.example.php db_config.php
 
-sed -i "s|const DB_HOST       = '';|const DB_HOST       = '$DB_HOST';|g" settings.php
-sed -i "s|const DB_NAME       = '';|const DB_NAME       = '$DB_NAME';|g" settings.php
-sed -i "s|const DB_USERNAME   = '';|const DB_USERNAME   = '$DB_USERNAME';|g" settings.php
-sed -i "s|const DB_PASSWORD   = '';|const DB_PASSWORD   = '$DB_PASSWORD';|g" settings.php
+sed -i "s|define('DB_HOST', '');|define('DB_HOST', '$DB_HOST');|g" db_config.php
+sed -i "s|define('DB_NAME', '');|define('DB_NAME', '$DB_NAME');|g" db_config.php
+sed -i "s|define('DB_USER', '');|define('DB_USER', '$DB_USERNAME');|g" db_config.php
+sed -i "s|define('DB_PASSWORD', '');|define('DB_PASSWORD', '$DB_PASSWORD');|g" db_config.php
 
 apache2-foreground
