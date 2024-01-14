@@ -24,6 +24,9 @@ RUN apt-get update \
       curl gd mbstring mysqli xdebug gettext \
     && docker-php-ext-enable xdebug 
 
+# Install Composer globally
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 RUN apt-get -y autoremove \
     && apt-get clean \
     && chown -R www-data:www-data .

@@ -3,7 +3,7 @@ services:
   web:
     image: victorqueirogabr/screentodb
     volumes:
-      - app:/var/www/html
+      - ./app:/var/www/html
     build:
       context: .  # O contexto do build deve apontar para o diretório com o Dockerfile do Easy!Appointments
     ports:
@@ -23,11 +23,6 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - "mysql:/var/lib/mysql"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--silent"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
     ports:
       - "3306:3306"
 

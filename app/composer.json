@@ -1,0 +1,7 @@
+{
+    "require": {
+        "smarty/smarty": "^4.0",
+        "twbs/bootstrap": "5.3.2"
+        
+    }
+}

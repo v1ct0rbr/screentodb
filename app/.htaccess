@@ -1,9 +1,15 @@
-RewriteEngine On
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-Options -Indexes
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^/]+)/([^/]+)/?$ index.php?pg=$1&p1=$2 [QSA,L]
 
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ index.php?pg=$1&p1=$2&p2=$3 [QSA,L]
 
-RewriteRule ^(.+) index.php?pg=$1 [L]
-RewriteRule	^(.[^/]+)/(.[^/]+)/(.[^/]+) index.php?pg=$1&$2=$3 [L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^/]+)/?$ index.php?pg=$1 [QSA,L]
+</IfModule>

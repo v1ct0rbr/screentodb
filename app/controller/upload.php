@@ -2,8 +2,8 @@
 // upload.php (Formulário de envio)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['video'])) {
 
-    require_once 'db_connect.php';
-    $pdo = db_connect();
+    require_once '../utils/db_connect.php';
+    $pdo = $db_connect;
 
     $repository = new ScreenCaptureRepository($pdo);
     
@@ -32,7 +32,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['video'])) {
 } else {
     $statusMsg = "Please select a video file to upload.";
 }
+
+/*
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!is_dir('uploads')) {
+        mkdir('uploads');
+    }
+
+    $videoName = $_POST['video-name'] ?? 'untitled';
+    $videoDescription = $_POST['video-description'] ?? '';
+    $videoFile = $_FILES['video-file'] ?? null;
+
+    if ($videoFile && $videoFile['error'] === UPLOAD_ERR_OK) {
+        $targetPath = "uploads/" . uniqid() . "-" . basename($videoFile['name']);
+        if (move_uploaded_file($videoFile['tmp_name'], $targetPath)) {
+            // Aqui você pode salvar o nome do vídeo e a descrição em um banco de dados, se desejar
+            echo json_encode(['message' => 'Vídeo carregado com sucesso!']);
+            exit;
+        }
+    }
+    
+    http_response_code(500);
+    echo json_encode(['error' => 'Falha ao fazer upload do vídeo.']);
+}
+*/
+
+
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
