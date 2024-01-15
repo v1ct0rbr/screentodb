@@ -1,2 +1,5 @@
 .env
-app/config/db_config.php
+app/configs/db_config.php
+app/smarty/**/*.php
+app/vendor
+app/composer.lock
