@@ -25,6 +25,7 @@ sed -i "s|define('DB_PASSWORD', '');|define('DB_PASSWORD', '$DB_PASSWORD');|g" d
 
 # Habilitar o módulo mod_rewrite para o Apache
 a2enmod rewrite
+phpenmod pdo
 
 # Verificar se o diretório /etc/apache2/sites-available existe
 if [ -d "/etc/apache2/sites-available" ]; then
@@ -42,7 +43,23 @@ else
   echo "Diretório de configuração do Apache não encontrado."
 fi
 
+
+
 cd /var/www/html
+
+
+if [ ! -d "./smarty/cache" ]; then
+  mkdir ./smarty/cache
+fi
+
+if [ ! -d "./smarty/configs" ]; then
+  mkdir ./smarty/configs
+fi
+
+if [ ! -d "./smarty/configs" ]; then
+  mkdir ./smarty/templates_c
+fi
+
 chown -R www-data:www-data uploads smarty/cache smarty/configs smarty/templates_c
 
 composer install;

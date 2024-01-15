@@ -1,6 +1,6 @@
 <?php
 // db_connect.php
-$config = require_once '../utils/db_config.php';
+$config = require_once 'configs/db_config.php';
 
 try {
     $pdo = new PDO(

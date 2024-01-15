@@ -1,10 +1,12 @@
 <?php
+
+
 // upload.php (Formulário de envio)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['video'])) {
 
-    require_once '../utils/db_connect.php';
+    require_once 'utils/db_connect.php';
+    require_once 'model/ScreenCapture.php';
     $pdo = $db_connect;
-
     $repository = new ScreenCaptureRepository($pdo);
     
     $targetDir = "uploads/";
@@ -32,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['video'])) {
 } else {
     $statusMsg = "Please select a video file to upload.";
 }
+
+$smart->display('home.tpl');
 
 /*
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -61,20 +65,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Upload Video</title>
-</head>
-<body>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <label for="video">Choose Video:</label>
-        <input type="file" name="video" id="video">
-        <input type="submit" value="Upload Video" name="submit">
-    </form>
-    <?php echo $statusMsg ?? ''; ?>
-</body>
-</html>
