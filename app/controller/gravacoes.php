@@ -1,9 +1,10 @@
 
 <?php
 
-require_once './utils/db_connect.php';
+$pdo = require_once './utils/db_connect.php';
 require_once 'model/ScreenCapture.php';
-$pdo = $db_connect;
+require_once 'repository/ScreenCaptureRepository.php';
+
 $repository = new ScreenCaptureRepository($pdo);
 
 $screenCaptures = $repository->listAll();

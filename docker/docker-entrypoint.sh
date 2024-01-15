@@ -14,7 +14,7 @@
 #
 #  ./docker-entrypoint.sh
 #
-cd /var/www/html/config
+cd /var/www/html/configs
 
 cp db_config.example.php db_config.php
 
@@ -22,6 +22,8 @@ sed -i "s|define('DB_HOST', '');|define('DB_HOST', '$DB_HOST');|g" db_config.php
 sed -i "s|define('DB_NAME', '');|define('DB_NAME', '$DB_NAME');|g" db_config.php
 sed -i "s|define('DB_USER', '');|define('DB_USER', '$DB_USERNAME');|g" db_config.php
 sed -i "s|define('DB_PASSWORD', '');|define('DB_PASSWORD', '$DB_PASSWORD');|g" db_config.php
+
+sed -i "" /usr/local/etc/php/php.ini-production
 
 # Habilitar o módulo mod_rewrite para o Apache
 a2enmod rewrite
