@@ -5,27 +5,34 @@ $pdo = require_once './utils/db_connect.php';
 require_once 'model/Category.php';
 require_once 'repository/CategoryRepository.php';
 
+
 $repository = new CategoryRepository($pdo);
 $category = null;
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)){
+$messages = array();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' ){
     
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-    
     $name = filterInput('name');
     $description = filterInput('description');
-
     $category = new Category($id, $name, $description);
-    $newId = 0;
-
-    if($id != null)
-        $repository->update($category);
-    else{
-        $newId = $repository->create($category);
-        $category->setId( $newId );
-    }
+    $messages = $category->validate();
     
+    if(empty($messages)){
+        $newId = null;
+        if($id != null){
+            $repository->update($category);
+        }
+        else{
+            $newId = $repository->create($category);
+            $category->setId( $newId );
+        }
+        $messageUtils = new MessageUtils(MessageUtils::TYPE_SUCCESS, 'Categoria cadastrada com sucesso!');
+        array_push($messages, $messageUtils);
+    } 
 }
 
+
+$smarty->assign("messages", $messages);
 if($category != null){
     $smarty->assign("category", $category);
 }else{

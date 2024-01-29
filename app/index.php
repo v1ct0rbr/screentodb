@@ -4,6 +4,7 @@ require './vendor/autoload.php';
 require_once './configs/settings.php';
 require_once './configs/SmartySettings.php';
 require_once './utils/functions.php';
+require_once './utils/MessageUtils.php';
 
 $currentSitePath = $currentSitePath = $_SERVER['DOCUMENT_ROOT'];
 

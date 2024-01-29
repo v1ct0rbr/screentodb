@@ -1,4 +1,11 @@
 <?php
+
+function isValidString($string) {
+    $teste = isset($string) && trim($string) !== '';
+   
+    return $teste;
+}
+
 function protectAndFilterFormField($campo) {
     // Remove espaços em branco do início e do final
     $campo = trim($campo);

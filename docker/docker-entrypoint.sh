@@ -58,7 +58,7 @@ if [ ! -d "./smarty/configs" ]; then
   mkdir ./smarty/configs
 fi
 
-if [ ! -d "./smarty/configs" ]; then
+if [ ! -d "./smarty/templates_c" ]; then
   mkdir ./smarty/templates_c
 fi
 
