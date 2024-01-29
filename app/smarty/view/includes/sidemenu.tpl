@@ -12,6 +12,9 @@
                         <li class="nav-item"> <a href="/home" class="nav-link"> <i class="nav-icon bi bi-record2"></i>
                                 <p>Captura</p>
                             </a> </li>
+                        <li class="nav-item"> <a href="/categories" class="nav-link"> <i class="nav-icon bi bi-tag"></i>
+                            <p>Categorias</p>
+                        </a> </li>
                         <li class="nav-item"> <a href="/gravacoes" class="nav-link"> <i class="nav-icon bi bi-table"></i>
                                 <p>Listar gravações</p>
                             </a> </li>

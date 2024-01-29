@@ -9,8 +9,9 @@ class ScreenCapture
     private $createdAt;
     private $token;
     private $path;
+    private $category;
 
-    public function __construct($id = null, $name = '', $description = '', $createdAt = null, $token = '', $path = '')
+    public function __construct(Category $category, $id = null, $name = '', $description = '', $createdAt = null, $token = '', $path = '' )
     {
         $this->id = $id;
         $this->name = $name;
@@ -18,6 +19,7 @@ class ScreenCapture
         $this->createdAt = $createdAt;
         $this->token = $token;
         $this->path = $path;
+        $this->category = $category;
     }
 
     // Getters
@@ -27,6 +29,10 @@ class ScreenCapture
     public function getCreatedAt() { return $this->createdAt; }
     public function getToken() { return $this->token; }
     public function getPath() { return $this->path; }
+    public function getCategory() { return $this->category; }
+
+   
+
 
     // Setters
     public function setId($id) { $this->id = $id; }
@@ -35,4 +41,6 @@ class ScreenCapture
     public function setCreatedAt($createdAt) { $this->createdAt = $createdAt; }
     public function setToken($token) { $this->token = $token; }
     public function setPath($path) { $this->path = $path; }
+    public function setCategory($category) { $this->category = $category; }
+
 }

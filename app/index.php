@@ -3,6 +3,7 @@
 require './vendor/autoload.php';
 require_once './configs/settings.php';
 require_once './configs/SmartySettings.php';
+require_once './utils/functions.php';
 
 $currentSitePath = $currentSitePath = $_SERVER['DOCUMENT_ROOT'];
 
@@ -15,6 +16,7 @@ $pg = isset($_GET['pg']) ? $_GET['pg'] : 'home';
 
 
 $paginas_desabilitadas = array();
+
 
 if (isset($paginas_desabilitadas[$pg])) {
     echo 'Página temporariamente indisponível. ('.$paginas_desabilitadas[$pg].') <input type="button" value="voltar" onclick="window.history.back()" />';
