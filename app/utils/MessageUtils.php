@@ -2,29 +2,36 @@
 // ScreenCapture.php
 class MessageUtils
 {
-    final public const TYPE_ERROR = "error";
+    final public const TYPE_ERROR = "danger";
     final public const TYPE_WARNING = "warning";
     final public const TYPE_SUCCESS = "success";
+
+    private $messagesList;
     
-    private $type;
-    private $text;
-        
-    public function __construct($type, $text)
+    public function __construct()
     {
-        $this->type = $type;
-        $this->text = $text;                
+        $this->messagesList = array();
     }
 
-    // Getters
-    public function getType() { return $this->type; }
-    public function getText() { return $this->text; }
-
-    // Setters
-    public function setType($type) { $this->type = $type; }
-    public function setText($text) { $this->text = $text; }
+    public function addMessageToList($type, $text){
         
-    public function validate(){
-        
+        array_push($this->messagesList, array("type" => $type,"text"=> $text));
     }
+     // Getters
+    public function getMessagesList() { return $this->messagesList; }
+       // Setters
+    
+    public function setMessagesList($messagesList) { $this->messagesList = $messagesList; }
+        
+    public function hasAnyErrors(){
+        foreach ($this->messagesList as $key => $value) {
+            if($value["type"] === self::TYPE_ERROR){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     
 }

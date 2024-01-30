@@ -10,6 +10,8 @@
         <div class="container-fluid">
             <!--begin::Row-->
 
+            {* {include file="../includes/messages.tpl" } *}
+
             {include file="../includes/messages.tpl" }
 
             <div class="row g-4">

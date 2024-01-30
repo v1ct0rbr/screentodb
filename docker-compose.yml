@@ -5,7 +5,9 @@ services:
     volumes:
       - ./app:/var/www/html
     build:
-      context: .  # O contexto do build deve apontar para o diretório com o Dockerfile do Easy!Appointments
+      context: .
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # O contexto do build deve apontar para o diretório com o Dockerfile do Easy!Appointments
     ports:
       - "80:80"
     environment:

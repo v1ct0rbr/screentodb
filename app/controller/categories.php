@@ -8,16 +8,16 @@ require_once 'repository/CategoryRepository.php';
 
 $repository = new CategoryRepository($pdo);
 $category = null;
-$messages = array();
+$messages = new MessageUtils();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' ){
     
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     $name = filterInput('name');
     $description = filterInput('description');
     $category = new Category($id, $name, $description);
-    $messages = $category->validate();
+    $category->validate($messages);
     
-    if(empty($messages)){
+    if(!$messages->hasAnyErrors()){
         $newId = null;
         if($id != null){
             $repository->update($category);
@@ -26,13 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ){
             $newId = $repository->create($category);
             $category->setId( $newId );
         }
-        $messageUtils = new MessageUtils(MessageUtils::TYPE_SUCCESS, 'Categoria cadastrada com sucesso!');
-        array_push($messages, $messageUtils);
+        $messages->addMessageToList(MessageUtils::TYPE_SUCCESS, 'Categoria cadastrada com sucesso!');
+              
     } 
 }
 
 
-$smarty->assign("messages", $messages);
+$smarty->assign("mymessages", $messages->getMessagesList());
 if($category != null){
     $smarty->assign("category", $category);
 }else{

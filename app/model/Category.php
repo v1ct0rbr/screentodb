@@ -29,12 +29,12 @@ class Category
     public function setName($name) { $this->name = $name; }
     public function setDescription($description) { $this->description = $description; }
     
-    public function validate(){
-        $errorMessages = array();
+    public function validate(MessageUtils $messageUtils){
+        
         if(!isValidString($this->name)){
-            array_push($errorMessages, new MessageUtils(MessageUtils::TYPE_ERROR, "Nome não pode ficar vazio"));
+            $messageUtils->addMessageToList(MessageUtils::TYPE_ERROR, "Nome não pode ficar vazio");
         }
-        return $errorMessages;
+       
     }
     
 }
